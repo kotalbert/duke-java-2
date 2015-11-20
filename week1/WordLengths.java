@@ -41,16 +41,43 @@ public class WordLengths {
         return len;
     }
     
+    /**
+     * This method returns the index position of the largest element in values.
+     * @param   values  int array to be searched
+     * @return  largest value int values array
+     */
+    public int indexOfMax(int[] values) {
+        int indOfMax = 0;
+        int maxSoFar = values[0];
+        
+        for (int i=1;i<values.length;i++){
+        
+            if (values[i]>maxSoFar) {
+                maxSoFar = values[i];
+                indOfMax = i;
+            }
+        }
+        
+        return indOfMax;
+    }
+    
+    /**
+     * Testing countWordLengths method.
+     */
     public void testCountWordLengths() {
     int[] counts = new int[31];
-    FileResource fr = new FileResource("data/macbeth.txt");
+    FileResource fr = new FileResource("data/smallHamlet.txt");
     
     countWordLengths(fr, counts);
     
     for (int i=1; i<counts.length; i++) {
         System.out.printf("%d:\t%d\n", i, counts[i]);
     }
+    
+    System.out.println("Largest value in array: " + indexOfMax(counts));
 
     }
+    
+    
     
 }

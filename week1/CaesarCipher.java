@@ -9,8 +9,7 @@ package week1;
  */
 public class CaesarCipher {
 
-    final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    
+    final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
     
     /**
      * Method encrypts input with Caesar Cipher
@@ -33,15 +32,18 @@ public class CaesarCipher {
     /**
      * Helper function.
      * Encrypt single char with given key.
+     * Decrypts letters only, returning non letters as is.
+     * @param   ch  character to be encrypted
+     * @param   key encryption key
      * @return  uppercase or lowercase encrypted character
      */
-    private char encrypt(char input, int key) {
+    private char encrypt(char ch, int key) {
         
-        char chUC = Character.toUpperCase(input);
+        char chUC = Character.toUpperCase(ch);
         int cInd = ALPHABET.indexOf(chUC);
         
         // do not translate non letters
-        if (cInd==-1) return input;
+        if (cInd==-1) return ch;
         
         // index of encoded character
         int enInd = (cInd+key)%26;
@@ -49,7 +51,7 @@ public class CaesarCipher {
         char enCh = ALPHABET.charAt(enInd);
         
         // check the case of character and return appropriate
-        if (Character.isUpperCase(input)) return enCh;
+        if (Character.isUpperCase(ch)) return enCh;
         else return Character.toLowerCase(enCh);
     
     }
