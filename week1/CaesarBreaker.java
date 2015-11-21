@@ -11,9 +11,7 @@ import edu.duke.FileResource;
 public class CaesarBreaker {
     
     final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
-    // ABCDEFGHIJ   KLMNOPQRST  UVWXYZ
-    // 0123456789   0123456789  012345
-    
+
     /**
      * Count occurancies of letters in string.
      * @param   msg String for which number of letters is to be calculated
@@ -126,7 +124,7 @@ public class CaesarBreaker {
     }
     
     /**
-     * his method should return a new String that is every 
+     * This method should return a new String that is every 
      * other character from message starting with the start position.
      * @param message   string to be split in half
      * @param   start   starting point to begin splitting
