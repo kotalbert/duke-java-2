@@ -64,13 +64,13 @@ public class CaesarBreakerTest {
         String txt = "eeeEEEeeeeeee aaabb ccdd eeeCCCCEEEE";
         int setKey;
         setKey = 17;
-        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        assertEquals(setKey,cb.getKey(e(txt,setKey)));
         setKey = 2;
-        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        assertEquals(setKey,cb.getKey(e(txt,setKey)));
         setKey = 9;
-        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        assertEquals(setKey,cb.getKey(e(txt,setKey)));
         setKey = 25;
-        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        assertEquals(setKey,cb.getKey(e(txt,setKey)));
     }
     
     @Test
@@ -80,6 +80,39 @@ public class CaesarBreakerTest {
         String enc = cc.encrypt(org, 21);
         String dec = cb.decryptOneKey(enc);
         assertEquals(org,dec);
+        
+    }
+    
+    @Test
+    public void testHalfOfString() {
+        
+        String msg = "Qbkm Zgis";
+        assertEquals("Qk gs", cb.halfOfString(msg, 0));
+        assertEquals("bmZi", cb.halfOfString(msg, 1));
+        
+    }
+    
+    @Test
+    public void testMix() {
+        String str = "Qbkm Zgis";
+        String s0 = cb.halfOfString(str, 0);
+        String s1 = cb.halfOfString(str, 1);
+        String mixed = cb.mix(s0, s1);
+        assertEquals(str, mixed);
+    
+    }
+    
+    @Test
+    public void testDecryptTwoKeys() {
+    
+        String msg = "aaaXXXEEEeeeXXXYYYeeeeeeeeeeeeeeeeeEEEEEEE";
+        String encoded = cc.encryptTwoKeys(msg, 11, 22);
+        String decoded = cb.decryptTwoKeys(encoded);
+        System.out.println(msg);
+        System.out.println(encoded);
+        System.out.println(decoded);
+        assertEquals(msg,decoded);
+        
         
     }
     

@@ -66,7 +66,7 @@ public class WordLengths {
      */
     public void testCountWordLengths() {
     int[] counts = new int[31];
-    FileResource fr = new FileResource("data/smallHamlet.txt");
+    FileResource fr = new FileResource();
     
     countWordLengths(fr, counts);
     

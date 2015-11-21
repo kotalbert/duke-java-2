@@ -1,5 +1,6 @@
 package week1;
 
+import edu.duke.FileResource;
 
 /**
  * Break the Caesar Cipher using the letter frequencies. 
@@ -100,7 +101,7 @@ public class CaesarBreaker {
      * @param   msg encrypted string for which key is to be found
      * @return  encryption key for msg
      */
-    public int findKey(String msg) {
+    public int getKey(String msg) {
         //count letters in msg
         int[] counts = countLetters(msg);
         //find intex of highest count
@@ -118,10 +119,91 @@ public class CaesarBreaker {
      * @param   msg string to be decrypted
      * @return  decrypted msg with key guessed
      */
-    public String decryptOneKey(String msg) {
+    public String decryptOneKey(String encrypted) {
         
-        return decrypt(msg, findKey(msg));
+        return decrypt(encrypted, getKey(encrypted));
         
+    }
+    
+    /**
+     * his method should return a new String that is every 
+     * other character from message starting with the start position.
+     * @param message   string to be split in half
+     * @param   start   starting point to begin splitting
+     * @return  string containing every other letter from input
+     */
+    public String halfOfString(String message, int start) {
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i=start;i<message.length();i+=2) sb.append(message.charAt(i));
+        
+        return sb.toString();
+    
+    }
+    
+    /**
+     * Helper function for merging string split with halfOfString
+     * @param   s0  substring starting from index 0
+     * @param   s1  substring starting from index 1
+     * @return  original string split with halfOfString
+     */
+    public String mix(String s0, String s1) {
+        
+        StringBuilder sb = new StringBuilder(s0+s1);
+        
+        //put s0 to place
+        for (int i=0;i<s0.length();i++) {
+            sb.setCharAt(2*i, s0.charAt(i));
+        }
+        //put s1 to place
+        for (int i=0;i<s1.length();i++) {
+            sb.setCharAt(2*i+1, s1.charAt(i));
+        }
+        return sb.toString();
+    
+    }
+    
+    /**
+     * This method attempts to determine the two keys used to encrypt the message,
+     * prints the two keys, and then returns the decrypted String with those two keys.
+     * @param   encrypted   string encrypted with encryptTwoKeys
+     * @return  decrypted string
+     */
+    public String decryptTwoKeys(String encrypted) {
+        String s0 = halfOfString(encrypted, 0);
+        String s1 = halfOfString(encrypted, 1);
+        
+        System.out.printf("key1: %d\tkey2: %d\n", getKey(s0), getKey(s1));
+        
+        String dec0 = decryptOneKey(s0);
+        String dec1 = decryptOneKey(s1);
+        
+        return mix(dec0, dec1);
+    }
+    
+    /**
+     * Decrypt text encrypted with two keys.
+     * @param   encrypted   text to be decrypted
+     * @param   key0    first encryption key
+     * @param   key1    second encryption key
+     * @return  string decrypted using provided keys
+     */
+    public String decrypt(String encrypted, int key0, int key1) {
+        
+        String s0 = halfOfString(encrypted, 0);
+        String s1 = halfOfString(encrypted, 1);
+        
+        String dec0 = decrypt(s0, key0);
+        String dec1 = decrypt(s1, key1);
+        
+        return mix(dec0, dec1);
+        
+    }
+    
+    public String decryptFileTwoKeys() {
+        FileResource fr = new FileResource();
+        return decryptTwoKeys(fr.asString());
     }
 
 }
