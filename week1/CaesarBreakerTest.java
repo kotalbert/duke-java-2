@@ -38,6 +38,50 @@ public class CaesarBreakerTest {
     
         System.out.printf("%d\t%d\n", i, counts[i]);
     }
+    
     }
+    
+    private int mi(String txt) {return cb.maxIndex(cb.countLetters(txt));}
+    
+    @Test
+    public void testMaxIndex() {
+    String txt = "aaaabbc";
+    assertEquals(0, mi(txt));
+    
+    txt = "aaAbbBBcC";
+    assertEquals(1, mi(txt));
+    
+    txt = "aaAbbBBcCcccccc";
+    assertEquals(2, mi(txt));
+    
+    }
+    
+    private String e(String txt, int key) {return cc.encrypt(txt, key);}
+    
+    @Test
+    public void testFindKey() {
+    
+        String txt = "eeeEEEeeeeeee aaabb ccdd eeeCCCCEEEE";
+        int setKey;
+        setKey = 17;
+        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        setKey = 2;
+        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        setKey = 9;
+        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+        setKey = 25;
+        assertEquals(setKey,cb.findKey(e(txt,setKey)));
+    }
+    
+    @Test
+    public void testDecryptOneKey() {
+    
+        String org = "This is message to be decrypted with my methods!@@@ eee!!";
+        String enc = cc.encrypt(org, 21);
+        String dec = cb.decryptOneKey(enc);
+        assertEquals(org,dec);
+        
+    }
+    
     
 }

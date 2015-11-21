@@ -10,6 +10,8 @@ package week1;
 public class CaesarBreaker {
     
     final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+    // ABCDEFGHIJ   KLMNOPQRST  UVWXYZ
+    // 0123456789   0123456789  012345
     
     /**
      * Count occurancies of letters in string.
@@ -31,7 +33,21 @@ public class CaesarBreaker {
      * @param   vals    array of ints to be checked.
      * @return  index of max value in ints array
      */
-    public int maxIndex(int[] vals) {return -1;}
+    public int maxIndex(int[] vals) {
+        
+        int indOfMax = 0;
+        int maxSoFar = vals[0];
+        
+        for (int i=1;i<vals.length;i++){
+        
+            if (vals[i]>maxSoFar) {
+                maxSoFar = vals[i];
+                indOfMax = i;
+            }
+        }
+        
+        return indOfMax;
+    }
     /**
      * Decrypt Caesar Cipher with a given key.
      * @param   msg String to be decrypted
@@ -76,4 +92,36 @@ public class CaesarBreaker {
         if (Character.isUpperCase(ch)) return dch;
         else return Character.toLowerCase(dch);
     }
+    
+        
+    /**
+     * Method for finding encryption key, based on most common occurences of letter
+     * in encrypted msg, assuming that it represents 'e';
+     * @param   msg encrypted string for which key is to be found
+     * @return  encryption key for msg
+     */
+    public int findKey(String msg) {
+        //count letters in msg
+        int[] counts = countLetters(msg);
+        //find intex of highest count
+        int indOfMax = maxIndex(counts);
+        //find&return shift
+        final int IND_E = 4;
+        int key = indOfMax - IND_E;
+        if (key<0) return key+26;
+        else return key;
+        
+    }
+    
+    /**
+     * Method for decrypting meg, encrypted with one key.
+     * @param   msg string to be decrypted
+     * @return  decrypted msg with key guessed
+     */
+    public String decryptOneKey(String msg) {
+        
+        return decrypt(msg, findKey(msg));
+        
+    }
+
 }
