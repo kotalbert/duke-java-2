@@ -121,10 +121,7 @@ public class WordsInFiles{
 	public static void tester() {
 		WordsInFiles wif = new WordsInFiles();
 		wif.buildWordFileMap();
-		wif.printAll();
-		System.out.println("maxNumber:\t"+wif.maxNumber());
-		wif.printFilesIn("love");
-		wif.printFilesIn("birds");
+
 	}
 	
 	public static void main(String[] args) {
