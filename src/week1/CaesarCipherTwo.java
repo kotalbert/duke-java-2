@@ -9,7 +9,6 @@ package week1;
  */
 public class CaesarCipherTwo {
 
-    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private CaesarCipherOne cc0;
     private CaesarCipherOne cc1;
 
@@ -38,7 +37,6 @@ public class CaesarCipherTwo {
         
         for (int i=0; i<sb.length(); i++) {
             char ch = sb.charAt(i);
-            int key;
             if (i%2==0) sb.setCharAt(i,cc0.encrypt(ch));
             else sb.setCharAt(i,cc1.encrypt(ch));
             

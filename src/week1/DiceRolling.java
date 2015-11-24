@@ -16,7 +16,6 @@ public class DiceRolling
     private class Dice {
         private int sides = 6;
         Random rand = new Random();
-        Dice() {}
         Dice(int sides) {this.sides = sides;}
         
         int roll() {

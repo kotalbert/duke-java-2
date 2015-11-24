@@ -1,7 +1,6 @@
 package week1;
 
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 import edu.duke.FileResource;
 

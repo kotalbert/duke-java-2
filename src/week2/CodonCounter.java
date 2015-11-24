@@ -18,7 +18,7 @@ public class CodonCounter {
 	public CodonCounter() {
 		codons = new HashMap<String, Integer>();
 	}
-	
+	// CGT TCA AGT TCA A
 	/**
 	 * This method will add codons to map of codons mapped to their counts 
 	 * from the string dna with the reading frame with the position 
@@ -26,12 +26,14 @@ public class CodonCounter {
 	 * @param start	start index to count codons (a value of 0, 1, or 2)
 	 * @param dna	dna to be processed
 	 */
-	private void buildCodonMap(int start, String dna) {
+	public void buildCodonMap(int start, String dna) {
+		codons.clear();
 		
-		for (int i=start; i<dna.length()-3;i++) {
+		for (int i=start; i<dna.length()-3;) {
 			String codon = dna.substring(i, i+3);
 			if (!codons.containsKey(codon)) codons.put(codon,1);
 			else codons.put(codon, codons.get(codon)+1);
+			i+=3;
 		}
 		
 	}
@@ -42,11 +44,11 @@ public class CodonCounter {
 	 * start (a value of 0, 1, or 2).
 	 * @param dna	dna to be processed
 	 */
-	public void buildCodonMap(String dna) {
-		codons.clear();
-		for (int i=0;i<=3;i++) buildCodonMap(i, dna);
-		
-	}
+//	public void buildCodonMap(String dna) {
+//		codons.clear();
+//		for (int i=0;i<=3;i++) buildCodonMap(i, dna);
+//		
+//	}
 	
 	public String getMostCommonCodon() {
 		int maxCount = 0;
@@ -74,15 +76,32 @@ public class CodonCounter {
 		
 	}
 	
+	public int getCodonCount() {
+		return codons.size();
+	}
+	
 	public static void main(String[] args) {
 		CodonCounter cc = new CodonCounter();
-//		FileResource fr = new FileResource();
-//		String DNA = fr.asString();
+		FileResource fr = new FileResource();
+		String DNA = fr.asString();
 		
-		String DNA = "CGTTCAAGTTCAA";
-		cc.buildCodonMap(DNA);
+		System.out.println("Codons 0:");
+		cc.buildCodonMap(0,DNA);
+		System.out.println("Number of unique codons:\t"+cc.getCodonCount());
 		System.out.println(cc.getMostCommonCodon());
-		cc.printCodonCounts(1, 5);
+
+		
+		System.out.println("Codons 1:");
+		cc.buildCodonMap(1,DNA);
+		System.out.println(cc.getMostCommonCodon());
+		System.out.println("Number of unique codons:\t"+cc.getCodonCount());
+		cc.printCodonCounts(6, 6);
+		
+		System.out.println("Codons 2:");
+		cc.buildCodonMap(2,DNA);
+		System.out.println(cc.getMostCommonCodon());
+		System.out.println("Number of unique codons:\t"+cc.getCodonCount());
+		cc.printCodonCounts(4, 4);
 
 	}
 	

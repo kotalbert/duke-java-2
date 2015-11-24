@@ -35,7 +35,8 @@ public class GladLib {
     
     private Random myRandom;
     
-    private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
+    @SuppressWarnings("unused")
+	private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
     private static String dataSourceDirectory = "data";
     private String source;
     
