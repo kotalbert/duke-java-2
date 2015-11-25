@@ -89,6 +89,7 @@ public class CodonCounter {
 		cc.buildCodonMap(0,DNA);
 		System.out.println("Number of unique codons:\t"+cc.getCodonCount());
 		System.out.println(cc.getMostCommonCodon());
+		cc.printCodonCounts(7, 7);
 
 		
 		System.out.println("Codons 1:");

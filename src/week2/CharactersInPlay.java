@@ -121,4 +121,9 @@ public class CharactersInPlay {
         charactersWithNumParts(num1, num2);
        
     }
+    
+    public static void main(String[] args) {
+		CharactersInPlay cip = new CharactersInPlay();
+		cip.tester(10, 105);
+	}
 }
