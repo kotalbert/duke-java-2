@@ -4,7 +4,7 @@ import edu.duke.FileResource;
 import java.util.ArrayList;
 
 /**
- *  Program to determine the characters in one of Shakespeare’s plays 
+ *  Program to determine the characters in one of Shakespeare's plays 
  *  that have the most speaking parts. 
  * 
  * @author Pawel Daniluk 
@@ -41,7 +41,7 @@ public class CharactersInPlay {
     
     /**
      * This method should update the two ArrayLists, adding the 
-     * character’s name if it is not already there, 
+     * character's name if it is not already there, 
      * and counting this line as one speaking part for this person. 
      */
     private void update(String person) {
@@ -69,7 +69,7 @@ public class CharactersInPlay {
     private String getPerson(String line) {
         
         String[] splitLine = line.split("\\.");
-        return splitLine[0].toUpperCase();
+        return splitLine[0].trim().toUpperCase();
         
     }
     
@@ -124,6 +124,6 @@ public class CharactersInPlay {
     
     public static void main(String[] args) {
 		CharactersInPlay cip = new CharactersInPlay();
-		cip.tester(10, 105);
+		cip.tester(50, 200);
 	}
 }

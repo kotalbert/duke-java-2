@@ -37,7 +37,7 @@ public class WordsInFiles{
 		String fname = f.getName();
 		
 		for (String word : fr.words()) {
-			word = word.toLowerCase();
+			
 			if (!wordMap.containsKey(word)) {
 				ArrayList<String> al = new ArrayList<String>();
 				al.add(fname);
@@ -45,8 +45,7 @@ public class WordsInFiles{
 			}
 			else {
 				ArrayList<String> al = wordMap.get(word);
-				for (String name : al) if (name==fname) continue;
-				al.add(fname);
+				if (!al.contains(fname)) al.add(fname);
 				
 			}
 		}
@@ -130,18 +129,27 @@ public class WordsInFiles{
 		System.out.println("Number of words in 4 files: " 
 		+ wif.wordsInNumFiles(4).size());
 		
-		// files with "sad"
-		System.out.println("files with laid:");
+		// files with "laid"
 		wif.printFilesIn("laid");
 		
-		// files with "red"
-		System.out.println("files with tree:");
+		// files with "tree"
 		wif.printFilesIn("tree");
 		
 		
 	}
 	
+	public static void tester2() {
+		WordsInFiles wif = new WordsInFiles();
+		wif.buildWordFileMap();
+		
+		wif.printAll();
+		System.out.println("Number of words in 3 files: " 
+		+ wif.wordsInNumFiles(3).size());
+		
+	}
+	
 	public static void main(String[] args) {
+		// 
 		tester();
 
 	}

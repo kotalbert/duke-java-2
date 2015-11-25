@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.sun.media.jfxmediaimpl.MarkerStateListener;
-
 /**
  * GladLibMap modified to use HashMaps.
  * 
@@ -146,7 +144,7 @@ public class GladLibMap {
     
     /**
      * Read template and replace labels with random replacement words.
-     * @return	template file with all labels replaced with ranom words
+     * @return	template file with all labels replaced with random words
      */
     private String fromTemplate(String source){
         String story = new String();

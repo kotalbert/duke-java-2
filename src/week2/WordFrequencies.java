@@ -78,7 +78,7 @@ public class WordFrequencies {
         String word = myWords.get(ind);
         int freq = myFreqs.get(ind);
         System.out.printf("Number of unique words: %d\n", myWords.size());
-        System.out.printf("The word that occurs most often: %s: %d\n", word, freq);
+        System.out.printf("The word that occurs most often: >%s<: %d\n", word, freq);
     
     }
     
