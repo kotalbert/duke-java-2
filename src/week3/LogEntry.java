@@ -1,3 +1,5 @@
+package week3;
+
 
 /**
  * Write a description of class LogRecord here.

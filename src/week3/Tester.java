@@ -1,3 +1,4 @@
+package week3;
 
 /**
  * Write a description of class Tester here.
