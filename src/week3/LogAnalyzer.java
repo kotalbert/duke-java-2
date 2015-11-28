@@ -9,6 +9,8 @@ package week3;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import edu.duke.FileResource;
 
 public class LogAnalyzer
@@ -18,7 +20,6 @@ public class LogAnalyzer
      /**
       * Constructor. 
       * Initialize ArrayList to store LogEntry objects.
-      * Initialize ArrayList to store unique IPs.
       * Initialize default path to files.
       */
      public LogAnalyzer() {
@@ -29,6 +30,7 @@ public class LogAnalyzer
      /**
       * Read file and parse lines as LogEntry objects.
       * Using FileResource to select a file to be processed.
+      * @param fname	name of log to be parsed, located in default directory
       */
      public void readFile(String fname) {
          FileResource fr = new FileResource(dir+fname);
@@ -40,15 +42,6 @@ public class LogAnalyzer
          for (LogEntry le : records) {
              System.out.println(le);
          }
-     }
-     
-     //TODO: Assignment: Unique IPs
-     
-     /**
-      * Helper function to fill unique IPs list.
-      */
-     private void fillUniqueIPs() {
-
      }
      
      /**
@@ -124,6 +117,58 @@ public class LogAnalyzer
     	 }
     	 return unique.size();
     	 
+     }
+     
+     /**
+      * Maps an IP address to the number of times that IP address appears in 
+      * the web log file.
+      * @return map of IP to visit counts
+      */
+     public HashMap<String, Integer> countVisitsPerIP() {return null;}
+     
+     /**
+      * This method returns an ArrayList of Strings of IP addresses that all 
+      * have the maximum number of visits to this website. 
+      * @param	map	map of IP to visit counts
+      * @return	list of IPs that have maximum number of visits		
+      */
+     public ArrayList<String> mostNumberVisitsByIP(HashMap<String, Integer> map) {
+    	 return null;
+    	 
+     }
+     
+     /**
+      * This method returns a map that uses 
+      * records and maps days from web logs to an ArrayList of IP addresses 
+      * that occurred on that day.
+      * @return	map of day ("MMM DD" format) to array of IPs visited on that day
+      */
+     public HashMap<String, ArrayList<String>> iPsForDays() {
+    	 return null;
+     }
+     
+     /**
+      * This method returns the day that has the most IP address visits. 
+      * If there is a tie, then return any such day.
+      * @param map	maps days from web logs to an ArrayList of IP addresses 
+      * that occurred on that day.
+      * @return		day that has the most IP address visits.
+      */
+     public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> map) {
+    	 return null;
+     }
+     
+     /**
+      *  This method returns an ArrayList of IP addresses that had the 
+      *  most accesses on the given day.
+      * @param 	map	maps days from web logs to an ArrayList of IP addresses that 
+      * occurred on that day
+      * @param 	day	a day in the format "MMM DD"
+      * @return	list of IP addresses that had the most accesses on the given 
+      * day. 
+      */
+     public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> map, String day) {
+    	 return null;
      }
      
 }

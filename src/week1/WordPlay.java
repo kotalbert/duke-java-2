@@ -15,6 +15,7 @@ public class WordPlay {
      *  (one of 'a', 'e', 'i', 'o', or 'u' or the uppercase versions) 
      *  and false otherwise.
      *  @param  ch  char to be checked
+     *  @return	true if ch is vowel, false otherwise
      */
     public boolean isVowel (char ch) {
         char chLow = Character.toLowerCase(ch);
@@ -45,13 +46,14 @@ public class WordPlay {
     
     /**
      *  This method should return a String that is the string phrase but with the 
-     *  Char ch (upper- or lowercase) replaced by ‘*’ if it is in an odd number location in 
-     *  the string (first character has index 0, third character has index 2, etc.), or
-     *  ‘+’ if it is in an even number location in the string (second character has index 1, 
+     *  Char ch (upper- or lowercase) replaced by asterix if it is in an odd 
+     *  number location in the string (first character has index 0, third 
+     *  character has index 2, etc.), or plus if it is in an even number 
+     *  location in the string (second character has index 1, 
      *  fourth character has index 3, etc.).
      *  @param  phrase  String to be processed
      *  @param  ch      character to be replaced in string
-     *  @return phrase with char ch replaced with '*' or '+'
+     *  @return phrase with char  replaced with asterix or plus
      */
     public String emphasize(String phrase, char ch) {
         StringBuilder sb = new StringBuilder(phrase);

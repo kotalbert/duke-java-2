@@ -39,17 +39,9 @@ public class CodonCounter {
 	}
 	
 	/**
-	 * This method will build a new map of codons mapped to their counts 
-	 * from the string dna with the reading frame with the position 
-	 * start (a value of 0, 1, or 2).
-	 * @param dna	dna to be processed
+	 * This method returns most common codon actually stored.
+	 * @return	most common codon
 	 */
-//	public void buildCodonMap(String dna) {
-//		codons.clear();
-//		for (int i=0;i<=3;i++) buildCodonMap(i, dna);
-//		
-//	}
-	
 	public String getMostCommonCodon() {
 		int maxCount = 0;
 		String mostCodon = new String();

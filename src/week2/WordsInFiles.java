@@ -66,8 +66,7 @@ public class WordsInFiles{
 	/**
 	 *  This method returns the maximum number of files any word appears in, 
 	 *  considering all words from a group of files. 
-	 * @param word
-	 * @return
+	 * @return	maximum number of files any word appears in
 	 */
 	public int maxNumber() {
 		
@@ -98,7 +97,7 @@ public class WordsInFiles{
 	/**
 	 * his method prints the names of the files this word appears in, 
 	 * one filename per line. 
-	 * @param word
+	 * @param word	word to be found across the files
 	 */
 	public void printFilesIn(String word) {
 		System.out.println("Files containing "+word);

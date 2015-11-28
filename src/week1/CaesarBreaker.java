@@ -114,7 +114,7 @@ public class CaesarBreaker {
     
     /**
      * Method for decrypting meg, encrypted with one key.
-     * @param   msg string to be decrypted
+     * @param   encrypted string to be decrypted
      * @return  decrypted msg with key guessed
      */
     public String decryptOneKey(String encrypted) {

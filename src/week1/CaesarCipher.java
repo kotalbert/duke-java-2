@@ -61,6 +61,9 @@ public class CaesarCipher {
      * Caesar Cipher algorithm, starting with the first character, 
      * and key2 is used to encrypt every other character, starting 
      * with the second character.
+     * @param input	input to be encrypted
+     * @param key1	key to encrypt every other char in input (starting from 0)
+     * @param key2	key to encrypt every other char in input (starting from 1)
      * @return  string encrypted with two keys
      */
     public String encryptTwoKeys(String input, int key1, int key2) {

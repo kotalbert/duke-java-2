@@ -78,6 +78,8 @@ public class CharactersInPlay {
      * characters that have exactly number speaking parts, 
      * where number is greater than or equal to num1 and 
      * less than or equal to num2.
+     * @param	num1	lower bound of speaking parts
+     * @param	num2	upper bound of speaking parts
      */
     public void charactersWithNumParts(int num1, int num2) {
         
