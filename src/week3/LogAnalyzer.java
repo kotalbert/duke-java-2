@@ -124,27 +124,89 @@ public class LogAnalyzer
       * the web log file.
       * @return map of IP to visit counts
       */
-     public HashMap<String, Integer> countVisitsPerIP() {return null;}
+     public HashMap<String, Integer> countVisitsPerIP() {
+    	 HashMap<String, Integer> map = new HashMap<String, Integer>();
+    	 
+    	 for (LogEntry le : records) {
+    		 String ip = le.getIpAddress();
+    		 if (!map.keySet().contains(ip)) map.put(ip, 1);
+    		 else map.put(ip, map.get(ip)+1);
+    	 }
+    	 return map;
+    	 
+     }
+     
+     /**
+      * Helper method.
+      * Maps an IP address to the number of times that IP address appears in 
+      * the web log file, but for a given day only.
+      * @param	day	day in "MMM DD" format, limiting output
+      * @return map of IP to visit counts for a given day
+      */
+     private HashMap<String, Integer> countVisitsPerIP(String day) {
+    	 HashMap<String, Integer> map = new HashMap<String, Integer>();
+    	 
+    	 for (LogEntry le : records) {
+    		 if (!getDay(le).equals(day)) continue;
+    		 
+    		 String ip = le.getIpAddress();
+    		 if (!map.keySet().contains(ip)) map.put(ip, 1);
+    		 else map.put(ip, map.get(ip)+1);
+    	 }
+    	 return map;
+    	 
+     }
      
      /**
       * This method returns an ArrayList of Strings of IP addresses that all 
       * have the maximum number of visits to this website. 
       * @param	map	map of IP to visit counts
-      * @return	list of IPs that have maximum number of visits		
+      * @return max number of visits from one IP	
       */
-     public ArrayList<String> mostNumberVisitsByIP(HashMap<String, Integer> map) {
-    	 return null;
+     public int mostNumberVisitsByIP(HashMap<String, Integer> map) {
+    	 int maxVisits = 0;
+    	 for (int visits : map.values()) 
+    		 if (visits > maxVisits) maxVisits = visits;
+
+    	 
+    	 return maxVisits;
     	 
      }
      
      /**
-      * This method returns a map that uses 
-      * records and maps days from web logs to an ArrayList of IP addresses 
-      * that occurred on that day.
+      * Helper function to get day in format "MMM DD" from argument.
+      * @param le	LogEntry object to get day from
+      * @return	date string in format "MMM DD"
+      */
+     private String getDay(LogEntry le) {
+    	 String date = le.getAccessTime().toString();
+    	 // Assuming that day is in the same place
+    	 return date.substring(4, 10);
+     }
+     
+     /**
+      * This method returns a map that uses records and maps days from web logs 
+      * to an ArrayList of IP addresses that occurred on that day.
       * @return	map of day ("MMM DD" format) to array of IPs visited on that day
       */
      public HashMap<String, ArrayList<String>> iPsForDays() {
-    	 return null;
+    	 HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+    	 
+    	 for (LogEntry le : records) {
+    		 String day = getDay(le);
+    		 String ip = le.getIpAddress();
+    		 
+    		 if (!map.containsKey(day)) {  
+    			 ArrayList<String> list = new ArrayList<String>();
+    			 list.add(ip);
+    			 map.put(day, list);
+    		 }
+    		 else {
+    			 // ensure unique ips are on the list
+    			 if (!map.get(day).contains(ip)) map.get(day).add(ip);
+    		 }
+    	 }
+    	 return map;
      }
      
      /**
@@ -155,20 +217,43 @@ public class LogAnalyzer
       * @return		day that has the most IP address visits.
       */
      public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> map) {
-    	 return null;
+    	 int maxSize = 0;
+    	 String most = null;
+    	 
+    	 for (String day : map.keySet()) {
+    		 int size = map.get(day).size();
+    		 if (size>maxSize) {
+    			 maxSize = size;
+    			 most = day;
+    		 }
+    	 }
+    	 return most;
      }
      
      /**
       *  This method returns an ArrayList of IP addresses that had the 
       *  most accesses on the given day.
-      * @param 	map	maps days from web logs to an ArrayList of IP addresses that 
+      * @param 	map	maps days from web log to an ArrayList of IP addresses that 
       * occurred on that day
       * @param 	day	a day in the format "MMM DD"
       * @return	list of IP addresses that had the most accesses on the given 
       * day. 
       */
-     public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> map, String day) {
-    	 return null;
+     public ArrayList<String> iPsWithMostVisitsOnDay(String day) {
+    	 // output
+    	 ArrayList<String> list = new ArrayList<String>();
+    	 HashMap<String, Integer> visits = countVisitsPerIP(day);
+    	 
+    	 // find max visits count
+    	 int maxCount = 0;
+    	 for (int count : visits.values()) 
+    		 if (count > maxCount) maxCount = count;
+    	 
+    	 // fill output list
+    	 for (String ip : visits.keySet())
+    		 if (visits.get(ip) == maxCount) list.add(ip);
+    	 
+    	 return list;
      }
      
 }

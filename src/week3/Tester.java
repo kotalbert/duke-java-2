@@ -45,8 +45,8 @@ public class Tester
     } 
     
     public void testUniqueIPVisitsOnDay() {
-    	System.out.println("Ips on: Mar 17");
-    	System.out.println(la.uniqueIPVisitsOnDay("Mar 17"));
+    	System.out.println("Ips on: Sep 27");
+    	System.out.println(la.uniqueIPVisitsOnDay("Sep 27").size());
 //    	System.out.println("Ips on: Sep 30");
 //    	System.out.println(la.uniqueIPVisitsOnDay("Sep 30"));
     }
@@ -58,12 +58,45 @@ public class Tester
 //    	System.out.println(la.countUniqueIPsInRange(300, 399));
     }
     
+    public void testCountVisitsPerIP() {
+    	HashMap<String, Integer> map = la.countVisitsPerIP();
+    	System.out.println(map);
+    }
+    
+    public void testMostNumberVisitsByIP() {
+    	int max = la.mostNumberVisitsByIP(la.countVisitsPerIP());
+    	System.out.println("Max number of visits from ip: "+max);
+    }
+    
+    public void testIPsForDays() {
+    	HashMap<String, ArrayList<String>> map = la.iPsForDays();
+    	System.out.println("Mapping day-visit");
+    	System.out.println(map);
+    }
+    
+    public void testDayWithMostIPVisits() {
+    	HashMap<String, ArrayList<String>> map = la.iPsForDays();
+    	System.out.println("Day with most visits:");
+    	System.out.println(la.dayWithMostIPVisits(map));
+    }
+    
+    public void testIPsWithMostVisitsOnDay() {
+    	ArrayList<String> list = la.iPsWithMostVisitsOnDay("Sep 29");
+    	System.out.println("IPs with most visits on Sep 29:");
+    	System.out.println(list);
+    }
+    
     public static void main(String[] args) {
-		Tester t = new Tester("weblog1_log");
-		//t.testLogAnalyzer();
-		//t.testUniqueIP();
+		Tester t = new Tester("weblog2_log");
+//		t.testLogAnalyzer();
+		t.testUniqueIP();
 		t.testPrintAllHigherThanNum();
 		t.testUniqueIPVisitsOnDay();
 		t.testCountUniqueIPsInRange();
+		t.testCountVisitsPerIP();
+		t.testMostNumberVisitsByIP();
+		t.testIPsForDays();
+		t.testDayWithMostIPVisits();
+		t.testIPsWithMostVisitsOnDay();
 	}
 }
