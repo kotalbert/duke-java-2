@@ -1,5 +1,13 @@
 package week3;
 
+/**
+ * Write a description of class Tester here.
+ *
+ * @author Pawel Daniluk
+ * @version 1.0
+*/
+
+
 import java.text.*; 
 import java.util.*;
 
