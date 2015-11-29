@@ -1,7 +1,5 @@
 package week4;
 
-import edu.duke.*;
-
 public class CaesarCipher {
     private String alphabet;
     private String shiftedAlphabet;
