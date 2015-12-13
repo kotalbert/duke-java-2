@@ -33,25 +33,9 @@ public class VigenereBreakerTest {
 		assertEquals(vb.sliceString("abcdefghijklm", 2, 5), "chm");
 		assertEquals(vb.sliceString("abcdefghijklm", 3, 5), "di");
 		assertEquals(vb.sliceString("abcdefghijklm", 4, 5), "ej");
-	}
-	
-	@Test
-	public void testTryKeyLength() {
-		String enc= new FileResource("data/vignere/VigenereTestData/athens_keyflute.txt").asString();
-		int[] key = vb.tryKeyLength(enc, 5, 'e');
-		System.out.println("Encrypted");
-		System.out.println(enc);
-		System.out.println("Key");
-		System.out.println(vb.translateKey(key));
 
-	}
-	
-	@Test
-	public void testBreakVigenere() {
-		System.out.println("Decrypted:");
-		vb.breakVigenere();
-	}
-	
-	
 
+	
+	}
+	
 }
