@@ -2,6 +2,8 @@ package week4;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+
 import org.junit.Test;
 
 import edu.duke.FileResource;
@@ -36,6 +38,23 @@ public class VigenereBreakerTest {
 
 
 	
+	}
+	
+	private void assertMostCommonCharIn(String path, char mostCommonChar) {
+		HashSet<String> dict = vb.readDictionary(new FileResource(path));
+		char mostCommon = vb.mostCommonCharIn(dict);
+		assertTrue("Dict not ok.", mostCommon == mostCommonChar);
+	}
+	
+	@Test
+	public void testMostCommonCharIn() {
+
+		assertMostCommonCharIn("data/vignere/dictionaries/English", 'e');
+		assertMostCommonCharIn("data/vignere/dictionaries/German", 'e');
+		assertMostCommonCharIn("data/vignere/dictionaries/Italian", 'a');
+		assertMostCommonCharIn("data/vignere/dictionaries/Portuguese", 'a');
+		
+		
 	}
 	
 }
